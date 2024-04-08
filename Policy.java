@@ -59,7 +59,7 @@ public class Policy{
       return policyNumber;
    }
    
-   public void setPolicyNumber(String policyNumber){
+   public void setPolicyNumber(String pNum){
       policyNumber = pNum;
    }
    
@@ -67,7 +67,7 @@ public class Policy{
       return providerName;
    }
    
-   public void setProviderName(String providerName){
+   public void setProviderName(String pName){
       providerName = pName;
    }
    
@@ -75,7 +75,7 @@ public class Policy{
       return holderFirstName;
    }
    
-   public void setHolderFirstName(String holderFirstName){
+   public void setHolderFirstName(String hFN){
      holderFirstName = hFN;
    }
    
@@ -83,7 +83,7 @@ public class Policy{
       return holderLastName;
    }
    
-   public void setHolderLastName(String holderLastName){
+   public void setHolderLastName(String hLN){
       holderLastName = hLN;
    }
    
@@ -91,7 +91,7 @@ public class Policy{
       return holderAge;
    }
    
-   public void setAge(int holderAge){
+   public void setAge(int hAge){
       holderAge = hAge;
    } 
    
@@ -99,7 +99,7 @@ public class Policy{
       return holderHeight;
    }
    
-   public void setHeight(double holderHeight){
+   public void setHeight(double hHeight){
       holderHeight = hHeight;
    }
    
@@ -107,7 +107,7 @@ public class Policy{
       return holderWeight;
    }
    
-   public void setWeight(double holderWeight){
+   public void setWeight(double hWeight){
       holderWeight = hWeight;
    }
    
@@ -115,7 +115,7 @@ public class Policy{
       return smokingStatus;
    }
    
-   public void setSmokingStatus(String smokingStatus){
+   public void setSmokingStatus(String sS){
       smokingStatus = sS;
    }
    

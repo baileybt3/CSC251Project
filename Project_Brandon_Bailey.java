@@ -3,44 +3,90 @@ Brandon Bailey
 3/25/2024
 This is the Demo class to display our policy and manipulate settings using the Policy class
 */
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
 public class Project_Brandon_Bailey{
 
    public static void main(String[] args){
-      Scanner scanner = new Scanner(System.in);
       
-      System.out.print("Please enter the Policy Number: ");
-      String policyNumber = scanner.nextLine();
-      System.out.print("Please enter the Provider Name: ");
-      String providerName = scanner.nextLine();
-      System.out.print("Please enter the Policyholder's First Name: ");
-      String holderFirstName = scanner.nextLine();
-      System.out.print("Please enter the Policyholder's Last Name: ");
-      String holderLastName = scanner.nextLine();
-      System.out.print("Please enter the Policyholder's Age: ");
-      int holderAge = scanner.nextInt();
-      scanner.nextLine();
-      System.out.print("Please enter the Policyholder's Smoking Status (smoker/non-smoker): ");
-      String smokingStatus = scanner.nextLine();
-      System.out.print("Please enter the Policyholder's Height (in inches): ");
-      double holderHeight = scanner.nextDouble();
-      System.out.print("Please enter the Policyholder's Weight (in pounds): ");
-      double holderWeight = scanner.nextDouble();
       
-      Policy policy = new Policy(policyNumber, providerName, holderFirstName, holderLastName, holderAge, holderHeight, holderWeight, smokingStatus);
-      
-      System.out.println("Policy Number: " + policy.getPolicyNumber());
-      System.out.println("Provider Name: " + policy.getProviderName());
-      System.out.println("Policyholder's First Name: " + policy.getHolderFirstName());
-      System.out.println("Policyholder's Last Name: " + policy.getHolderLastName());
-      System.out.println("Policyholder's Age: " + policy.getHolderAge());
-      System.out.println("Policyholder's Smoking Status: " + policy.getSmokingStatus());
-      System.out.println("Policyholder's Height: " + policy.getHolderHeight());
-      System.out.println("Policyholder's Weight: " + policy.getHolderWeight());
-      System.out.println("Policyholder's BMI: " + policy.calculateBMI());
-      System.out.println("Policy Price: $" + policy.calculateInsurancePrice());
-      
-      scanner.close();
+      try {
+         File file = new File("PolicyInformation.txt");
+         Scanner inputFile = new Scanner(file);
+        
+        // Declare variables
+         String policyNumber;
+         String providerName;
+         String holderFirstName;
+         String holderLastName;
+         int holderAge;
+         String smokingStatus;
+         double holderHeight;
+         double holderWeight;
+       
+        // Create an array list to store objects. This will hold policy information for each policy holder 
+         ArrayList<Policy> policies = new ArrayList<>();
+         
+        // Counters for smokers and non-smoker policy holders. Will check through each policy in the while loop below.
+         int smokerCount = 0;
+         int nonSmokerCount = 0;
+         
+       // While loop to input information from the policy lines                
+         while (inputFile.hasNext()){
+            policyNumber = inputFile.nextLine();
+            providerName = inputFile.nextLine();
+            holderFirstName = inputFile.nextLine();
+            holderLastName = inputFile.nextLine();
+            holderAge = Integer.parseInt(inputFile.nextLine());
+            smokingStatus = inputFile.nextLine();
+            holderHeight = Double.parseDouble(inputFile.nextLine());
+            holderWeight = Double.parseDouble(inputFile.nextLine());
+            
+          
+            if (inputFile.hasNext()){
+               inputFile.nextLine();
+            }
+            
+            //Create policy object using policy class type
+            Policy p = new Policy(policyNumber, providerName, holderFirstName, holderLastName, holderAge, holderHeight, holderWeight, smokingStatus);
+            
+            policies.add(p);
+           // Smoker - non-smoker counter
+            if (smokingStatus.equals("smoker")){
+               smokerCount++;
+            } else if (smokingStatus.equals("non-smoker")){
+               nonSmokerCount++;
+            }
+            
+         }
+         
+         inputFile.close(); //Close input
+         
+         
+        //Output our array for each policy holder
+         for (int i = 0; i < policies.size(); i++) {
+                System.out.println("Policy Number: " + policies.get(i).getPolicyNumber());
+                System.out.println("Provider Name: " + policies.get(i).getProviderName());
+                System.out.println("Policyholder's First Name: " + policies.get(i).getHolderFirstName());
+                System.out.println("Policyholder's Last Name: " + policies.get(i).getHolderLastName());
+                System.out.println("Policyholder's Age: " + policies.get(i).getHolderAge());
+                System.out.println("Policyholder's Smoking Status: " + policies.get(i).getSmokingStatus());
+                System.out.printf("Policyholder's Height: %.2f\n", policies.get(i).getHolderHeight()); // Format height with 2 decimal places
+                System.out.printf("Policyholder's Weight: %.2f\n", policies.get(i).getHolderWeight()); // Format weight with 2 decimal places
+                System.out.printf("Policyholder's BMI: %.2f\n", policies.get(i).calculateBMI()); // Format BMI with 2 decimal places
+                System.out.printf("Policy Price: $%.2f\n", policies.get(i).calculateInsurancePrice()); // Format price with 2 decimal places
+                System.out.println();
+         }
+         
+         //Output our smoker, non-smoker counters
+         System.out.println("The number of policies with a smoker is: " + smokerCount);
+         System.out.println("The number of polciies with a non-smoker is: " + nonSmokerCount); 
+         
+        //If something goes wrong, an IOException is "thrown" to us, and we "catch" it and deal with it
+      } catch(IOException ex){
+         //use the getMessage method of the exception we "caught" to print out it's message about what went wrong
+         System.out.println("Something went wrong reading the file: " + ex.getMessage());
+      }
    }
 }
