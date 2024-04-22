@@ -92,5 +92,17 @@ public class PolicyHolder
    public double calculateBMI(){
       return (holderWeight * 703) / (holderHeight * holderHeight);
    }
+   
+   // Modify the toString() method in the PolicyHolder class
+   @Override
+   public String toString() {
+      return "Policyholder's First Name: " + holderFirstName + "\n" +
+             "Policyholder's Last Name: " + holderLastName + "\n" +
+             "Policyholder's Age: " + holderAge + "\n" +
+             "Policyholder's Height: " + String.format("%.2f", holderHeight) + "\n" +
+             "Policyholder's Weight: " + String.format("%.2f", holderWeight) + "\n" +
+             "Policyholder's Smoking Status: " + smokingStatus + "\n" +
+             "Policyholder's BMI: " + String.format("%.2f", calculateBMI()) + "\n";
+}
       
 }

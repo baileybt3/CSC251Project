@@ -85,17 +85,9 @@ public class Policy{
       return baseFee + additionalFee;
    }
    
-   // toString method to represent Policy object as a string
+   // Add toString method to represent Policy object as a string
    public String toString() {
       return "Policy Number: " + policyNumber + "\n" +
-             "Provider Name: " + providerName + "\n" +
-             "Policyholder's First Name: " + policyHolder.getHolderFirstName() + "\n" +
-             "Policyholder's Last Name: " + policyHolder.getHolderLastName() + "\n" +
-             "Policyholder's Age: " + policyHolder.getHolderAge() + "\n" +
-             "Policyholder's Smoking Status: " + policyHolder.getSmokingStatus() + "\n" +
-             String.format("Policyholder's Height: %.2f\n", policyHolder.getHolderHeight()) +
-             String.format("Policyholder's Weight: %.2f\n", policyHolder.getHolderWeight()) +
-             String.format("Policyholder's BMI: %.2f\n", policyHolder.calculateBMI()) +
-             String.format("Policy Price: $%.2f\n", calculateInsurancePrice()) + "\n";
+             "Provider Name: " + providerName;
    }
 }
