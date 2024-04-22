@@ -58,6 +58,19 @@ public class Policy{
       return baseFee + additionalFee;
    }
    
+   public String toString(){
+      return "Policy Number: " + policyNumber + "\n" +
+             "Provider Name: " + providerName + "\n" + 
+             "Policyholder's First Name: " + policyHolder.getHolderFirstName() + "\n" +
+             "Policyholder's Last Name: " + policyHolder.getHolderLastName() + "\n" +
+             "Policyholder's Age: " + policyHolder.getHolderAge() + "\n" +
+             "Policyholder's Smoking Status: " + policyHolder.getSmokingStatus() + "\n" +
+             "Policyholder's Height: " + policyHolder.getHolderHeight() + "\n" +
+             "Policyholder's Weight: " + policyHolder.getHolderWeight() + "\n" + 
+             "Policyholder's BMI: " + String.format("%.2f", policyHolder.calculateBMI()) + "\n" +
+             "Policy Price: $" + String.format("%.2f" , calculateInsurancePrice());
+   }
+   
 }
    
    
